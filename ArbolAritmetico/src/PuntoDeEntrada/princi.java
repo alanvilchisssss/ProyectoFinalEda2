@@ -1,4 +1,4 @@
-package ArbolAritmetico.PuntoDeEntrada;
+package PuntoDeEntrada;
 import java.util.Scanner;
 public class princi {
     public static void main(String[] args) {

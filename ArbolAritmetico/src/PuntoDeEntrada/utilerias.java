@@ -1,6 +1,6 @@
 package PuntoDeEntrada;
 import java.util.Scanner;
-import ArbolAritmetico.*;
+import ArbolAritmetico.PuntoDeEntradaAritmetico.*;
 public class utilerias {
     public static void menu(Scanner scanner){
         int opcion=0; 
@@ -10,6 +10,8 @@ public class utilerias {
             System.out.println("2.- Heap");
             System.out.println("3.- Arbol de expresión aritmética");
             System.out.println("4.- Salir");
+            opcion=scanner.nextInt();
+            scanner.nextLine();
             switch(opcion){
                 case 1->{
 
@@ -18,7 +20,8 @@ public class utilerias {
 
                 }
                 case 3->{
-
+                    //ArbolAritmetico.PuntoDeEntradaAritmetico.menu.MenuDeAccionesAritmetico(scanner);
+                    menu.MenuDeAccionesAritmetico(scanner);
                 }
                 case 4->{
                     System.out.println("...Saliendo");
