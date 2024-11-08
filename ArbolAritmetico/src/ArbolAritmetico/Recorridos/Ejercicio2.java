@@ -1,8 +1,8 @@
 package ArbolAritmetico.Recorridos;
 import java.util.List;
-import ArbolAritmetico.Nodos.Nodo;
+import ArbolAritmetico.Nodos.*;
 public class Ejercicio2{
-	public static void Prefija(Nodo n,List<Nodo> notacion){
+	public static void Prefija(NodosArbolesAr n,List<NodosArbolesAr> notacion){
 		if(n==null){
 			return;
 		}
@@ -10,7 +10,7 @@ public class Ejercicio2{
 		Prefija(n.getIzq(), notacion);
 		Prefija(n.getDer(), notacion);
 	}
-	public static void Infija(Nodo n,List<Nodo> notacion){
+	public static void Infija(NodosArbolesAr n,List<NodosArbolesAr> notacion){
 		if(n==null){
 			return;
 		}
@@ -18,7 +18,7 @@ public class Ejercicio2{
 		notacion.add(n);
 		Infija(n.getDer(), notacion);
 	}
-	public static void Postfija(Nodo n,List<Nodo> notacion){
+	public static void Postfija(NodosArbolesAr n,List<NodosArbolesAr> notacion){
 		if(n==null){
 			return;
 		}

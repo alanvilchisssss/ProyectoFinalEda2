@@ -1,11 +1,17 @@
 package ArbolAritmetico.PuntoDeEntradaAritmetico;
 
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.Scanner;
+
+import ArbolAritmetico.arbol.arbolAritmetico;
 
 public class menu {
     public static void MenuDeAccionesAritmetico(Scanner scanner){
         int opcion=0;
-        String expresion="";
+        //String[] expresion=new String[];
+        LinkedList<String> expresion=new LinkedList<>();
+        arbolAritmetico arbol;
         do{
             System.out.println("¿Qué desea hacer?");
             System.out.println("1.- Ingresar expresión");
@@ -16,32 +22,17 @@ public class menu {
             scanner.nextLine();
             switch(opcion){
                 case 1->{
-                    if(expresion.equals("")){
-                    expresion=utilerias.ingresoDeExpresion(scanner);
-                    }else  if(!expresion.equals(null)){
-                        System.out.println("Desea reescribir la expresión ["+expresion+"]?(0/si, 1/no)");
-                        int Reescribir=scanner.nextInt();
-                        scanner.nextLine();
-                        switch(Reescribir){
-                            case 0->{
-                                expresion=utilerias.ingresoDeExpresion(scanner);
-                            }case 1->{
-                                System.out.println("Saliendo");
-                            }default->{
-                                System.out.println("Error");
-                            }
-                        } 
-                    }
+                    caso1(scanner, expresion);
                 }
                 case 2->{
-                    if(!expresion.equals("")){
+                    if(!expresion.isEmpty()){
 
                     }else{
                         System.out.println("Ingresa primero la expresión");
                     }
                 }
                 case 3->{
-                    if(!expresion.equals("")){
+                    if(!expresion.isEmpty()){
 
                     }else{
                         System.out.println("Ingresa primero la expresión.");
@@ -49,8 +40,34 @@ public class menu {
                 }
                 case 4->{
                     System.out.println("Saliendo al menú principal.");
-                }default->System.out.println("Error");
+                }
+                default->System.out.println("Error");
             }
         }while(opcion!=4);
+    }
+    public static void caso1(Scanner scanner,LinkedList<String> expresion){
+        if(expresion.isEmpty()){
+            utilerias.ingresoDeExpresion(scanner, expresion);
+            }else  if(!expresion.isEmpty()){
+                System.out.println("Desea reescribir la expresión ["+RegresoDeLaExpresion(expresion)+"]?(0/si, 1/no)");
+                int Reescribir=scanner.nextInt();
+                scanner.nextLine();
+                switch(Reescribir){
+                    case 0->{
+                        utilerias.ingresoDeExpresion(scanner, expresion);
+                    }case 1->{
+                        System.out.println("Saliendo");
+                    }default->{
+                        System.out.println("Error");
+                    }
+                } 
+            }
+    }
+    public static String RegresoDeLaExpresion(LinkedList<String> expresion){
+        String ExpresionConcatenada=new String();
+        for(String Expresion: expresion){
+            ExpresionConcatenada=ExpresionConcatenada+Expresion+",";
+        }
+        return ExpresionConcatenada;
     }
 }

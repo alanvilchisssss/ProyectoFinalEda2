@@ -20,7 +20,6 @@ public class utilerias {
 
                 }
                 case 3->{
-                    //ArbolAritmetico.PuntoDeEntradaAritmetico.menu.MenuDeAccionesAritmetico(scanner);
                     menu.MenuDeAccionesAritmetico(scanner);
                 }
                 case 4->{
