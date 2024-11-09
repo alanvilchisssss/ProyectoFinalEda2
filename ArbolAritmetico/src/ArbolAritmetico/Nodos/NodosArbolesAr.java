@@ -1,16 +1,18 @@
 package ArbolAritmetico.Nodos;
 
 public class NodosArbolesAr{
-    public char dato;
+    public String dato;
+    public int posicion;
+    public NodosArbolesAr Padre=null;
     public NodosArbolesAr izq=null;
     public NodosArbolesAr der=null;
     public NodosArbolesAr(){
         izq=der=null;
     }
-    public NodosArbolesAr(char data){
+    public NodosArbolesAr(String data){
         this(data,null,null);
     }
-    public NodosArbolesAr(char data, NodosArbolesAr lt, NodosArbolesAr rt){
+    public NodosArbolesAr(String data, NodosArbolesAr lt, NodosArbolesAr rt){
         dato=data;
         izq = lt;
         der = rt;
@@ -28,10 +30,22 @@ public class NodosArbolesAr{
     public NodosArbolesAr getDer(){
         return der;
     }
-    public char getData(){
+    public String getData(){
         return dato;
     }
-    public void setData(char valor){
+    public void setData(String valor){
         this.dato=valor;
+    }
+    public int getPosicion(){
+        return posicion;
+    }
+    public void setposicion(int posicion){
+        this.posicion=posicion;
+    }
+    public NodosArbolesAr getPadre(){
+        return Padre;
+    }
+    public void setPadre(NodosArbolesAr Padre){
+        this.Padre=Padre;
     }
 }

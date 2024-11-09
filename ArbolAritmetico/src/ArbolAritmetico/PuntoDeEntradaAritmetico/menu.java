@@ -1,17 +1,13 @@
 package ArbolAritmetico.PuntoDeEntradaAritmetico;
-
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Scanner;
-
 import ArbolAritmetico.arbol.arbolAritmetico;
 
 public class menu {
     public static void MenuDeAccionesAritmetico(Scanner scanner){
         int opcion=0;
-        //String[] expresion=new String[];
         LinkedList<String> expresion=new LinkedList<>();
-        arbolAritmetico arbol;
+        arbolAritmetico arbol=new arbolAritmetico();
         do{
             System.out.println("¿Qué desea hacer?");
             System.out.println("1.- Ingresar expresión");
@@ -26,7 +22,8 @@ public class menu {
                 }
                 case 2->{
                     if(!expresion.isEmpty()){
-
+                        arbolAritmetico.OrdenarArbol(expresion,arbol);
+                        arbol.breadthFrist();
                     }else{
                         System.out.println("Ingresa primero la expresión");
                     }
@@ -54,6 +51,7 @@ public class menu {
                 scanner.nextLine();
                 switch(Reescribir){
                     case 0->{
+                        expresion.clear();
                         utilerias.ingresoDeExpresion(scanner, expresion);
                     }case 1->{
                         System.out.println("Saliendo");

@@ -15,12 +15,7 @@ public class utilerias {
             if(expresion.isEmpty()){
                 Switch(scanner, expresion, Operacion, valores);
             }else{
-                System.out.println("operación actual: "+menu.RegresoDeLaExpresion(expresion));
-                Switch(scanner, expresion, Operacion, valores);
-                if(banderita==false){
-                String operacionSiguiente=PreguntarLaSiguienteOperación(scanner);
-                expresion.add(operacionSiguiente);
-                }
+                ExpresionNoVacia(scanner, expresion, Operacion, valores);
             }
         }while(!Operacion.equals("salir"));
     }
@@ -67,11 +62,14 @@ public class utilerias {
                 banderita=true;
                 System.out.println("...saliendo.");
             }
-            default->System.out.println("Error");
+            default->{
+                System.out.println("Error");
+                ExpresionNoVacia(scanner, expresion, Operacion, valores);
+            }
         }
     }
     public static String PreguntarLaSiguienteOperación(Scanner scanner){
-        System.out.println("Dado que ya ingresó una operación, ingrese que operación va a efectuar con la que acaba de ingresar:(suma, resta, multiplicacion, division, o salir)");
+        System.out.println("Dado que ya ingresó una operación, ingrese que operación va a efectuar con la que acaba de ingresar:(suma, resta, multiplicacion, division)");
         String Operacion=scanner.nextLine();
         scanner.nextLine();
         String signo=new String();
@@ -88,15 +86,19 @@ public class utilerias {
             case "division"->{
                 signo="/";
             }
-            case "salir"->{
-                banderita=true;
-                System.out.println("...saliendo.");
-            } 
             default->{
                 System.out.println("Error");
                 return PreguntarLaSiguienteOperación(scanner);
             }
         }
         return signo;
+    }
+    public static void ExpresionNoVacia(Scanner scanner,LinkedList<String> expresion, String Operacion, String[] valores){
+        System.out.println("operación actual: "+menu.RegresoDeLaExpresion(expresion));
+        Switch(scanner, expresion, Operacion, valores);
+        if(banderita==false){
+            String operacionSiguiente=PreguntarLaSiguienteOperación(scanner);
+        expresion.add(operacionSiguiente);
+        }
     }
 }
