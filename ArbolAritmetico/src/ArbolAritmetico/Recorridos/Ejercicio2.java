@@ -26,4 +26,5 @@ public class Ejercicio2{
 		Postfija(n.getDer(), notacion);
 		notacion.add(n);
 	}
+	
 }

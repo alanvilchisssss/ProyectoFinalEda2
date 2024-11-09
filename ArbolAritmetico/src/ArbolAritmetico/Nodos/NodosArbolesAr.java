@@ -3,6 +3,7 @@ package ArbolAritmetico.Nodos;
 public class NodosArbolesAr{
     public String dato;
     public int posicion;
+    public Boolean booleano=false;
     public NodosArbolesAr Padre=null;
     public NodosArbolesAr izq=null;
     public NodosArbolesAr der=null;
@@ -47,5 +48,11 @@ public class NodosArbolesAr{
     }
     public void setPadre(NodosArbolesAr Padre){
         this.Padre=Padre;
+    }
+    public Boolean getBool(){
+        return booleano;
+    }
+    public void setBool(Boolean booleano){
+        this.booleano=booleano;
     }
 }

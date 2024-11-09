@@ -23,7 +23,7 @@ public class menu {
                 case 2->{
                     if(!expresion.isEmpty()){
                         arbolAritmetico.OrdenarArbol(expresion,arbol);
-                        arbol.breadthFrist();
+                        //arbol.breadthFrist();
                     }else{
                         System.out.println("Ingresa primero la expresión");
                     }
