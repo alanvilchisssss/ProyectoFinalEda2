@@ -60,10 +60,17 @@ public class arbolAritmetico{
         }
         System.out.println();
         int nivel=0;
+        int contador_de_nodos=0;
         for(arbolAritmetico nodosss: arbolInvertido){
-            ImprimirSubArboles(nodosss.getRoot(),nivel);
             
+            ImprimirSubArboles(nodosss.getRoot(),nivel);
+            System.out.println();
+            contador_de_nodos++;
+            if(contador_de_nodos==Math.pow(2, nivel)){
             nivel++;
+            contador_de_nodos=0;
+            }
+
        }
     }
     public static void ImprimirSubArboles(NodosArbolesAr nodo, int nivel){
@@ -79,7 +86,6 @@ public class arbolAritmetico{
             if(nodo.getDer()!=null){
                 ImprimirSubArboles(nodo.getDer(), nivel+1);
             }
-            System.out.println();
     }
     public static arbolAritmetico UnirArboles(LinkedList<arbolAritmetico> ListaDeArboles){
         arbolAritmetico arbol=new arbolAritmetico();
@@ -118,7 +124,7 @@ public class arbolAritmetico{
     public void add(NodosArbolesAr padre){
         this.root=padre;
     }
-    public boolean ComprobacionSignos(String datosNodo, String[]signos){
+    public static boolean ComprobacionSignos(String datosNodo, String[]signos){
         for(String signo: signos){
             if(datosNodo.equals(signo)){
                 return true;
