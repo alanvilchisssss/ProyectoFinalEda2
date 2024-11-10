@@ -34,7 +34,7 @@ public class menu {
                 case 3->{
                     if(!expresion.isEmpty()){
                         Ejercicio2.Postfija(arbol.getRoot(), nodos);
-                        utilerias.Caso3(nodos);
+                        utilerias.Caso3(nodos, expresion);
                     }else{
                         System.out.println("Ingresa primero la expresión.");
                     }

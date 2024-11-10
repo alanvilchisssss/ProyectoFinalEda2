@@ -104,51 +104,75 @@ public class utilerias {
         expresion.add(operacionSiguiente);
         }
     }
-    public static void Caso3(LinkedList<NodosArbolesAr> nodos){
+    public static void Caso3(LinkedList<NodosArbolesAr> nodos,LinkedList<String> expresion){
         String[] signos={"+","*","-","/"};
         System.out.println("Orden postfijo:");
         arbolAritmetico.ImprimirListaDeNodos(nodos);
         LinkedList<String> ColaDeSignos=new LinkedList<>();
         LinkedList<Double> ColaDeValores=new LinkedList<>();
-        AgregarValoresAColas(ColaDeSignos, ColaDeValores, nodos, signos);
-        Double Resultado=Procedimiento(ColaDeSignos, ColaDeValores);
-        System.out.println(Resultado);
+        LinkedList<String> Priori=new LinkedList<>();
+        AgregarValoresAColas(ColaDeSignos, ColaDeValores, nodos, signos,Priori);
+        Double Resultado=Procedimiento(ColaDeSignos, ColaDeValores, Priori);
+        System.out.println("el valor de la expresión aritmetica ["+menu.RegresoDeLaExpresion(expresion)+"] es="+Resultado);
     }
-    public static Double Procedimiento(LinkedList<String> ColaDeSignos,LinkedList<Double> ColaDeValores){
-        Double resultado=0d;
-        for(String signos: ColaDeSignos){
+    public static Double Procedimiento(LinkedList<String> ColaDeSignos,LinkedList<Double> ColaDeValores,LinkedList<String> ColaDeSignosPriori){
+        LinkedList<Double> resultados=new LinkedList<>();
+        ObtenerResultados(ColaDeSignos, ColaDeValores, resultados);//obtenemos resultados de los signos secundarios.
+        ObtenerResultados(ColaDeSignosPriori, resultados, resultados);
+        return resultados.get(0);
+    }
+    public static void ObtenerResultados(LinkedList<String> ColaDeSignos,LinkedList<Double> ColaDeValores,LinkedList<Double> resultados){
+        Double resultadoAux=0d;
+        while(!ColaDeSignos.isEmpty()){
+            String signo=ColaDeSignos.poll();
+            Double[] valores=new Double[2];
             if(!ColaDeValores.isEmpty()){
-                switch(signos){
+                valores[0]=ColaDeValores.poll();
+                if(ColaDeValores.isEmpty()){
+                    valores[1]=resultados.poll();
+                }else if(!ColaDeValores.isEmpty()){
+                    valores[1]=ColaDeValores.poll();
+                }else{
+                    valores[0]=resultados.poll();
+                    valores[1]=resultados.poll();
+                }
+                switch(signo){
                     case "+"->{
-                        resultado=resultado+(ColaDeValores.poll()+ColaDeValores.poll());
+                        resultadoAux=valores[0]+valores[1];
                     }
                     case "*"->{
-                        resultado=resultado+(ColaDeValores.poll()*ColaDeValores.poll());
+                        resultadoAux=valores[0]*valores[1];
                     }   
                     case "-"->{
-                        resultado=resultado+(ColaDeValores.poll()-ColaDeValores.poll());
+                        resultadoAux=valores[0]-valores[1];
                     }
                     case "/"->{
-                        resultado=resultado+(ColaDeValores.poll()/ColaDeValores.poll());
+                        resultadoAux=valores[0]/valores[1];
                     }
                 }
-                ColaDeSignos.poll();
-            }else if(ColaDeValores.isEmpty()){
-                
+                resultados.add(resultadoAux);
             }
-
         }
-        return resultado;
     }
-    public static void AgregarValoresAColas(LinkedList<String> ColaDeSignos,LinkedList<Double> ColaDeValores,LinkedList<NodosArbolesAr> nodos,String[] signos){
+    public static void AgregarValoresAColas(LinkedList<String> ColaDeSignos,LinkedList<Double> ColaDeValores,LinkedList<NodosArbolesAr> nodos,String[] signos,LinkedList<String> ColaDeSignosPriori){
+        int contador=0;
+        int n=2;
         for(NodosArbolesAr nodoAux: nodos){
-            if(arbolAritmetico.ComprobacionSignos(nodoAux.getData(),signos)){
-                ColaDeSignos.add(nodoAux.getData());
-            }else{
+            if(arbolAritmetico.ComprobacionSignos(nodoAux.getData(),signos)&&(contador<n)){
+                String aux=nodoAux.getData();
+                ColaDeSignos.add(aux);
+                contador++;
+            }else if(arbolAritmetico.ComprobacionSignos(nodoAux.getData(),signos)&&(contador==n)){
+                String aux=nodoAux.getData();
+                ColaDeSignosPriori.add(aux);
+                contador=0;
+                n--;
+            }
+            else{
                 Double valorAux=Double.parseDouble(nodoAux.getData());
-                ColaDeValores.add(valorAux);
+                ColaDeValores.addFirst(valorAux);
+                contador=0;
             }
         }
-        
     }
 }
