@@ -1,6 +1,9 @@
 package ArbolAritmetico.PuntoDeEntradaAritmetico;
 import java.util.LinkedList;
 import java.util.Scanner;
+
+import ArbolAritmetico.Nodos.NodosArbolesAr;
+import ArbolAritmetico.Recorridos.Ejercicio2;
 import ArbolAritmetico.arbol.arbolAritmetico;
 
 public class menu {
@@ -8,6 +11,7 @@ public class menu {
         int opcion=0;
         LinkedList<String> expresion=new LinkedList<>();
         arbolAritmetico arbol=new arbolAritmetico();
+        LinkedList<NodosArbolesAr> nodos=new LinkedList<>();
         do{
             System.out.println("¿Qué desea hacer?");
             System.out.println("1.- Ingresar expresión");
@@ -23,14 +27,14 @@ public class menu {
                 case 2->{
                     if(!expresion.isEmpty()){
                         arbolAritmetico.OrdenarArbol(expresion,arbol);
-                        //arbol.breadthFrist();
                     }else{
                         System.out.println("Ingresa primero la expresión");
                     }
                 }
                 case 3->{
                     if(!expresion.isEmpty()){
-
+                        Ejercicio2.Postfija(arbol.getRoot(), nodos);
+                        utilerias.Caso3(nodos);
                     }else{
                         System.out.println("Ingresa primero la expresión.");
                     }

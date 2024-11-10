@@ -2,11 +2,11 @@ package ArbolAritmetico.arbol;
 import java.util.LinkedList;
 import java.util.Queue;
 import ArbolAritmetico.Nodos.NodosArbolesAr;
-import ArbolAritmetico.Recorridos.Ejercicio2;
+
 public class arbolAritmetico{
     public NodosArbolesAr root;
+    public static int totalDeCapas;
     public LinkedList<arbolAritmetico> arbolesConexos=new LinkedList<>();
-
     public arbolAritmetico(){
         root=null;
     }
@@ -16,13 +16,8 @@ public class arbolAritmetico{
     public static void OrdenarArbol(LinkedList<String> expresion, arbolAritmetico arbol){
         LinkedList<arbolAritmetico> ListaDeArboles=new LinkedList<>();
         LinkedList<String> RutasArboles=new LinkedList<>();
-        LinkedList<NodosArbolesAr> nodos=new LinkedList<>();
         SepararArboles(expresion, arbol, ListaDeArboles, RutasArboles);
-        Ejercicio2.Postfija(arbol.getRoot(), nodos);
-        //UnirArboles(ListaDeArboles);
         ImprimirBonitoArbol(arbol, expresion, RutasArboles,ListaDeArboles);
-        //ImprimirListaDeNodos(nodos);
-        //arbol.breadthFrist();
     }
     public static void ImprimirListaDeNodos(LinkedList<NodosArbolesAr> nodos){
         for(NodosArbolesAr nodo: nodos){
@@ -53,25 +48,38 @@ public class arbolAritmetico{
                 listaDeValores.add(secciones);
             }
         }
+        LinkedList<arbolAritmetico> arbolInvertido=new LinkedList<>();
+        for(arbolAritmetico arboldo: ListaDeArboles){
+            arbolInvertido.addFirst(arboldo);
+        }
+
+        totalDeCapas=(int) Math.sqrt(expresion.size())+1;
         System.out.println("***Arboles:***");
-        for(arbolAritmetico arbolesaux: ListaDeArboles){
-            ImprimirSubArboles(arbolesaux.getRoot());
+        for(int i=0; i<(totalDeCapas);i++){
+            System.out.print("Capa: "+i+" ");
         }
+        System.out.println();
+        int nivel=0;
+        for(arbolAritmetico nodosss: arbolInvertido){
+            ImprimirSubArboles(nodosss.getRoot(),nivel);
+            
+            nivel++;
+       }
     }
-    public static void ImprimirSubArboles(NodosArbolesAr nodo){
-        if(nodo.getBool()==false&&nodo!=null){
-            System.out.println("\t"+nodo.getData());
-            if(nodo.getIzq()!=null&&nodo.getDer()!=null){
-                System.out.println(nodo.getIzq().getData()+"\t\t"+nodo.getDer().getData());
-            }else if(nodo.getIzq()!=null&&nodo.getDer()==null){
-                System.out.println(nodo.getIzq().getData());
-            }else if(nodo.getDer()!=null&&nodo.getIzq()==null){
-                System.out.println("\t\t"+nodo.getDer().getData());
+    public static void ImprimirSubArboles(NodosArbolesAr nodo, int nivel){
+            for(int i=0; i<nivel; i++){
+                System.out.print("\t");
             }
+            System.out.print(nodo.getData());
             nodo.setBool(true);
-            nodo.getIzq().setBool(true);
-            nodo.getDer().setBool(true);
-        }
+            if(nodo.getIzq()!=null){
+                ImprimirSubArboles(nodo.getIzq(), nivel+1);
+
+            }
+            if(nodo.getDer()!=null){
+                ImprimirSubArboles(nodo.getDer(), nivel+1);
+            }
+            System.out.println();
     }
     public static arbolAritmetico UnirArboles(LinkedList<arbolAritmetico> ListaDeArboles){
         arbolAritmetico arbol=new arbolAritmetico();
@@ -181,43 +189,3 @@ public class arbolAritmetico{
         return arbolesConexos;
     }
 }
-//LinkedList<String> listaDeValores=new LinkedList<>();
-        /*for(String secciones: expresion){
-            if(secciones.equals("*")||secciones.equals("+")||secciones.equals("-")||secciones.equals("/")){
-                if(listaDeValores.isEmpty()){
-                    NodosArbolesAr nodo=new NodosArbolesAr(secciones);
-                    arbolAritmetico arbolaux=new arbolAritmetico(nodo);
-                    ListaDeArboles.add(arbolaux);
-                }else{
-                    NodosArbolesAr nodoHijo1=new NodosArbolesAr(listaDeValores.get(0));
-                    NodosArbolesAr nodoHijo2=new NodosArbolesAr(listaDeValores.get(1));
-                    NodosArbolesAr nuevoNodo=new NodosArbolesAr(secciones,nodoHijo1,nodoHijo2);
-                    nodoHijo1.setPadre(nuevoNodo);
-                    nodoHijo2.setPadre(nuevoNodo);
-                    arbolAritmetico auxiliar=new arbolAritmetico(nuevoNodo);
-                    ListaDeArboles.add(auxiliar);
-                    RutasArboles.add(auxiliar.getRoot().getData());
-                    listaDeValores.clear();
-                }
-            }
-            else{
-                listaDeValores.add(secciones);
-            }
-        }*/
-        //arbolAritmetico arbolfinal=new arbolAritmetico();
-        //LinkedList<NodosArbolesAr> nodos=new LinkedList<>();
-        /*ListaDeArboles=ListaDeArboles.reversed();
-        arbolfinal.add(ListaDeArboles.get(0).getRoot());
-        arbolfinal=UnirArboles(ListaDeArboles);*/
-        //Ejercicio2.PostfijaArboles(arbolfinal.getArbol(),nodos);
-
-        
-       /*for(arbolAritmetico arboles: arbolfinal.getArbol()){
-            arboles.breadthFrist();
-        }*/
-        
-        /*for(NodosArbolesAr nodoss: nodos){
-            System.out.println(nodoss.getData());
-        }*/
-        //arbolfinal.breadthFrist();
-        //ImprimirBonitoArbol(arbolfinal,expresion);

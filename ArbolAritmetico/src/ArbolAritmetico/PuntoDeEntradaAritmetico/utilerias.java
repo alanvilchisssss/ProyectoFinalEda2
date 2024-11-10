@@ -1,6 +1,8 @@
 package ArbolAritmetico.PuntoDeEntradaAritmetico;
 import java.util.LinkedList;
 import java.util.Scanner;
+
+import ArbolAritmetico.Nodos.NodosArbolesAr;
 public class utilerias {
     public static Boolean banderita=false;
     public static void ingresoDeExpresion(Scanner scanner,LinkedList<String> expresion){
@@ -64,7 +66,7 @@ public class utilerias {
             }
             default->{
                 System.out.println("Error");
-                ExpresionNoVacia(scanner, expresion, Operacion, valores);
+                ingresoDeExpresion(scanner,expresion);
             }
         }
     }
@@ -100,5 +102,8 @@ public class utilerias {
             String operacionSiguiente=PreguntarLaSiguienteOperación(scanner);
         expresion.add(operacionSiguiente);
         }
+    }
+    public static void Caso3(LinkedList<NodosArbolesAr> nodos){
+
     }
 }
