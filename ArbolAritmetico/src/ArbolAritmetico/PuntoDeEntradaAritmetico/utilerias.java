@@ -157,6 +157,7 @@ public class utilerias {
     public static void AgregarValoresAColas(LinkedList<String> ColaDeSignos,LinkedList<Double> ColaDeValores,LinkedList<NodosArbolesAr> nodos,String[] signos,LinkedList<String> ColaDeSignosPriori){
         int contador=0;
         int n=2;
+        Boolean BanderaDeNoUtilizarN=false;
         for(NodosArbolesAr nodoAux: nodos){
             if(arbolAritmetico.ComprobacionSignos(nodoAux.getData(),signos)&&(contador<n)){
                 String aux=nodoAux.getData();
@@ -166,7 +167,10 @@ public class utilerias {
                 String aux=nodoAux.getData();
                 ColaDeSignosPriori.add(aux);
                 contador=0;
+                if(BanderaDeNoUtilizarN==false){
                 n--;
+                BanderaDeNoUtilizarN=true;
+                }
             }
             else{
                 Double valorAux=Double.parseDouble(nodoAux.getData());

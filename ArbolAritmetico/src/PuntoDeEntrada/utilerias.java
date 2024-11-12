@@ -1,5 +1,7 @@
 package PuntoDeEntrada;
 import java.util.Scanner;
+import AVL.*;
+import Heap.*;
 import ArbolAritmetico.PuntoDeEntradaAritmetico.*;
 public class utilerias {
     public static void menu(Scanner scanner){
@@ -14,10 +16,10 @@ public class utilerias {
             scanner.nextLine();
             switch(opcion){
                 case 1->{
-
+                    PuntoDeEntrada.MENU(scanner);
                 }
                 case 2->{
-
+                    Heap.utilerias.menu();
                 }
                 case 3->{
                     menu.MenuDeAccionesAritmetico(scanner);

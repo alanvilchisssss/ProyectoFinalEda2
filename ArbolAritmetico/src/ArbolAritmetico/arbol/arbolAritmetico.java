@@ -165,31 +165,6 @@ public class arbolAritmetico{
                     ComprobacionesParaAñadir(rutaArbol.getDer(), nodo, signos);
                 }
             }    
-        /*if((ComprobacionSignos(nodo.getData(), signos))){
-                if(rutaArbol.getIzq()==null){
-                    rutaArbol.setIzq(nodo);
-                }else if(rutaArbol.getDer()==null){
-                    rutaArbol.setDer(nodo);
-                }else{ 
-                    if((ComprobacionSignos(rutaArbol.getData(), signos))){//&&(ComprobacionSignos(rutaArbol.getData(), signos))){
-                        ComprobacionesParaAñadir(rutaArbol.getIzq(), nodo, signos);
-                    }else if(ComprobacionSignos(rutaArbol.getData(), signos)){
-                        ComprobacionesParaAñadir(rutaArbol.getDer(), nodo, signos);
-                    }
-                }
-            }else{
-                if(rutaArbol.getIzq()==null){
-                    rutaArbol.setIzq(nodo);
-                }else if(rutaArbol.getDer()==null){
-                    rutaArbol.setDer(nodo);
-                }else{
-                    if(ComprobacionSignos(rutaArbol.getIzq().getData(), signos)){
-                        ComprobacionesParaAñadir(rutaArbol.getIzq(), nodo, signos);
-                    }else if(ComprobacionSignos(rutaArbol.getDer().getData(), signos)){
-                        ComprobacionesParaAñadir(rutaArbol.getDer(), nodo, signos);
-                    }
-                }
-            }*/
     }
     protected void visit(NodosArbolesAr n){
         System.out.println(n.getData()/*+" Posicion:"+n.getPosicion()*/);
@@ -220,17 +195,3 @@ public class arbolAritmetico{
         return arbolesConexos;
     }
 }
-        /*if(rutaArbol.getDer()==null){
-                    rutaArbol.setDer(nodo);
-                }else{
-                    ComprobacionesParaAñadir(rutaArbol.getDer(), nodo, signos);
-                }
-            }else if(ComprobarciónNumero==true){
-                if(rutaArbol.getIzq()==null){
-                    rutaArbol.setIzq(nodo);
-                }else if(rutaArbol.getDer()==null){
-                    rutaArbol.setDer(nodo);
-                }else{
-                    ComprobacionesParaAñadir(rutaArbol.getDer(), nodo, signos);
-                }
-            }*/
